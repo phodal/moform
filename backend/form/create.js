@@ -10,7 +10,7 @@ module.exports.handler = (event, context, callback) => {
   } catch (error) {
     callback(null, {
       statusCode: 400,
-      headers: { 'Content-Type': 'text/plain' },
+      headers: {'Content-Type': 'text/plain'},
       body: {
         error: error
       }
@@ -18,10 +18,10 @@ module.exports.handler = (event, context, callback) => {
     return;
   }
 
-  if(!isObject(formInfo)) {
+  if (!isObject(formInfo)) {
     callback(null, {
       statusCode: 400,
-      headers: { 'Content-Type': 'text/plain' },
+      headers: {'Content-Type': 'text/plain'},
       body: {
         error: '弄什么呢'
       }
@@ -47,7 +47,7 @@ module.exports.handler = (event, context, callback) => {
       console.error(error);
       callback(null, {
         statusCode: error.statusCode || 501,
-        headers: { 'Content-Type': 'text/plain' },
+        headers: {'Content-Type': 'text/plain'},
         body: 'couldn\'t create the form item.',
       });
       return;
@@ -57,6 +57,6 @@ module.exports.handler = (event, context, callback) => {
       statusCode: 200,
       body: JSON.stringify(params.Item),
     };
-  callback(null, response);
-});
+    callback(null, response);
+  });
 };
