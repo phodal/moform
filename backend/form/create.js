@@ -19,7 +19,7 @@ module.exports.handler = (event, context, callback) => {
     return;
   }
 
-  if (!isObject(formInfo)) {
+  if (!isObject(formInfo) || formInfo.length === 0) {
     callback(null, {
       statusCode: 400,
       headers: {'Content-Type': 'text/plain'},
