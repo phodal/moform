@@ -1,0 +1,26 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>${formTitle}</title>
+  <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://cdn.bootcss.com/popper.js/1.12.9/umd/popper.min.js"></script>
+  <script src="https://cdn.bootcss.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
+  <script src="https://cdn.bootcss.com/jquery-ui-bootstrap/0.5pre/assets/js/jquery-ui-1.10.0.custom.min.js"></script>
+  <script src="http://www.pho.im.s3-website-us-east-1.amazonaws.com/js/form-render.min.js"></script>
+</head>
+<body>
+<form action="/f/${formId}">
+
+</form>
+<script>
+  $('form').formRender({
+    dataType: 'json',
+    formData: JSON.parse('[{\"type\":\"header\",\"subtype\":\"h1\",\"label\":\"formBuilder 表单\"},{\"type\":\"text\",\"label\":\"你的名字是？\",\"className\":\"form-control\",\"name\":\"text-1512607631003\",\"subtype\":\"text\"},{\"type\":\"button\",\"label\":\"保存\",\"subtype\":\"button\",\"className\":\"btn btn-default\",\"name\":\"button-1512607599563\",\"style\":\"default\"}]')
+  });
+</script>
+</body>
+</html>
+

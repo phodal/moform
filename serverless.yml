@@ -2,9 +2,13 @@ service: moform
 
 plugins:
   - serverless-domain-manager
+  - serverless-finch
 
 custom:
   stage: ${opt:stage, self:provider.stage}
+  client:
+    bucketName: www.pho.im
+    distributionFolder: frontend
   customDomain:
     domainName: www.pho.im
     basePath: ''
@@ -20,6 +24,7 @@ provider:
   environment:
     USER_DYNAMODB_TABLE: ${self:service}-user-${opt:stage, self:provider.stage}
     FORM_DYNAMODB_TABLE: ${self:service}-form-${opt:stage, self:provider.stage}
+    FORM_DATA_DYNAMODB_TABLE: ${self:service}-form-data-${opt:stage, self:provider.stage}
     SLS_STAGE: ${self:custom.stage}
   iamRoleStatements:
     - Action:
@@ -30,6 +35,7 @@ provider:
       Resource:
         - "arn:aws:dynamodb:${opt:region, self:provider.region}:*:table/${self:provider.environment.USER_DYNAMODB_TABLE}"
         - "arn:aws:dynamodb:${opt:region, self:provider.region}:*:table/${self:provider.environment.FORM_DYNAMODB_TABLE}"
+        - "arn:aws:dynamodb:${opt:region, self:provider.region}:*:table/${self:provider.environment.FORM_DATA_DYNAMODB_TABLE}"
       Effect: Allow
 
 functions:
@@ -47,6 +53,14 @@ functions:
       - http:
           path: /f/{formId}
           method: get
+          cors: true
+
+  formSubmit:
+    handler: backend/form/submit.handler
+    events:
+      - http:
+          path: /f/{formId}
+          method: post
           cors: true
 
   userGet:
@@ -73,6 +87,20 @@ resources:
           ReadCapacityUnits: 1
           WriteCapacityUnits: 1
         TableName: ${self:provider.environment.FORM_DYNAMODB_TABLE}
+    FormDataDb:
+      Type: "AWS::DynamoDB::Table"
+      DeletionPolicy: Retain
+      Properties:
+        AttributeDefinitions:
+          - AttributeName: id
+            AttributeType: S
+        KeySchema:
+          - AttributeName: id
+            KeyType: HASH
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
+        TableName: ${self:provider.environment.FORM_DATA_DYNAMODB_TABLE}
     UserDb:
       Type: "AWS::DynamoDB::Table"
       DeletionPolicy: Retain
