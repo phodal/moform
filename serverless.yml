@@ -39,13 +39,19 @@ provider:
       Effect: Allow
 
 functions:
+  index:
+    handler: backend/index.handler
+    events:
+      - http:
+          path: ''
+          method: get
+
   formCreate:
     handler: backend/form/create.handler
     events:
       - http:
           path: /f/
           method: post
-          cors: true
 
   formGet:
     handler: backend/form/get.handler
@@ -53,7 +59,6 @@ functions:
       - http:
           path: /f/{formId}
           method: get
-          cors: true
 
   formSubmit:
     handler: backend/form/submit.handler
@@ -61,7 +66,6 @@ functions:
       - http:
           path: /f/{formId}
           method: post
-          cors: true
 
   userGet:
     handler: backend/user/get.handler
@@ -69,7 +73,6 @@ functions:
       - http:
           path: /user/{userId}
           method: get
-          cors: true
 
 resources:
   Resources:
@@ -118,6 +121,12 @@ resources:
 
 package:
   exclude:
-    - frontend/**/*.js
-    - frontend/**/*.css
+    - frontend/js
+    - frontend/css
     - doc/**
+    - package.json
+    - README.md
+    - LICENSE
+    - .idea
+    - .editorconfig
+    - .adr.json
