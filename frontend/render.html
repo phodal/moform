@@ -5,13 +5,8 @@
         content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>${formTitle}</title>
+  <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
   <link href="https://cdn.bootcss.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" rel="stylesheet">
-
-  <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
-  <script src="https://cdn.bootcss.com/popper.js/1.12.9/umd/popper.min.js"></script>
-  <script src="https://cdn.bootcss.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
-  <script src="https://cdn.bootcss.com/jquery-ui-bootstrap/0.5pre/assets/js/jquery-ui-1.10.0.custom.min.js"></script>
-  <script src="http://www.pho.im.s3-website-us-east-1.amazonaws.com/js/form-render.min.js"></script>
 </head>
 <body>
 <!-- Navigation -->
@@ -23,18 +18,73 @@
 </nav>
 
 <div class="container">
-<div class="row">
-  <form action="/f/${formId}">
-    <div class="form-info"></div>
-    <input type="submit" value="提交" class="btn btn-default btn-success">
-  </form>
+  <div class="row">
+    <form id="submitForm" action="/f/${formId}" method="post">
+      <div class="form-info"></div>
+      <button id="submitButton" type="submit" class="btn btn-default btn-success">
+        提交
+      </button>
+    </form>
+  </div>
 </div>
+
+<div class="modal fade" id="successModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">提交成功</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">确定</button>
+      </div>
+    </div>
+  </div>
 </div>
+
+<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/popper.js/1.12.9/umd/popper.min.js"></script>
+<script src="https://cdn.bootcss.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
+<script src="https://cdn.bootcss.com/jquery-ui-bootstrap/0.5pre/assets/js/jquery-ui-1.10.0.custom.min.js"></script>
+<script src="https://cdn.pho.im/js/form-render.min.js"></script>
 <script>
+window.formInfo = JSON.parse('[{\"type\":\"header\",\"subtype\":\"h1\",\"label\":\"formBuilder 表单\"},{\"type\":\"text\",\"label\":\"你的名字是？\",\"className\":\"form-control\",\"name\":\"text-1512607631003\",\"subtype\":\"text\"},{\"type\":\"button\",\"label\":\"保存\",\"subtype\":\"button\",\"className\":\"btn btn-default\",\"name\":\"button-1512607599563\",\"style\":\"default\"}]')
+jQuery(function ($) {
   $('.form-info').formRender({
     dataType: 'json',
-    formData: JSON.parse('[{\"type\":\"header\",\"subtype\":\"h1\",\"label\":\"formBuilder 表单\"},{\"type\":\"text\",\"label\":\"你的名字是？\",\"className\":\"form-control\",\"name\":\"text-1512607631003\",\"subtype\":\"text\"},{\"type\":\"button\",\"label\":\"保存\",\"subtype\":\"button\",\"className\":\"btn btn-default\",\"name\":\"button-1512607599563\",\"style\":\"default\"}]')
+    formData: window.formInfo
   });
+
+  $('#submitForm').on("submit", function (){
+    event.preventDefault();
+    $('#submitButton').prop('disabled', true);
+    let filledData = $(this).serializeArray();
+    $.ajax({
+      url: '/f/${formId}',
+      type: 'post',
+      dataType: 'json',
+      success: function (data) {
+        $('#successModal .modal-body').html('提交成功')
+        $('#successModal').modal('show');
+      },
+      error: function (data) {
+        console.log(data)
+        $('#successModal .modal-title').html('提交失败')
+        $('#successModal .modal-body').html(data.responseText)
+        $('#successModal').modal('show');
+      },
+      data: {
+        formInfo: window.formInfo,
+        formData: filledData
+      }
+    });
+  });
+});
 </script>
 </body>
 </html>
