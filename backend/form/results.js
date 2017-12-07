@@ -101,9 +101,7 @@ module.exports.handler = (event, context, callback) => {
 
     const response = {
       statusCode: 200,
-      headers: {
-        "Access-Control-Allow-Origin" : "*" // Required for CORS support to work
-      },
+      headers: {'Content-Type': 'text/html'},
       body: generateHtml(result.Items),
     };
     callback(null, response);

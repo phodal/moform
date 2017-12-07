@@ -56,9 +56,9 @@ module.exports.handler = (event, context, callback) => {
 
     const response = {
       statusCode: 201,
-      headers: {
-        "Access-Control-Allow-Origin" : "*" // Required for CORS support to work
-      },
+      // headers: {
+      //   "Access-Control-Allow-Origin" : "*" // Required for CORS support to work
+      // },
       body: JSON.stringify(params.Item),
     };
     callback(null, response);
