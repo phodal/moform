@@ -16,9 +16,7 @@ let baseHtml = `<!DOCTYPE html>
 </nav>
 
 <div class="container">
-  <div class="row">
-    <div class="build-wrap"></div>
-  </div>
+  <div class="build-wrap"></div>
 </div>
 
 <!-- Modal -->
