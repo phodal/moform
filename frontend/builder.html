@@ -18,9 +18,63 @@
 <script>
   jQuery(function ($) {
     $('.build-wrap').formBuilder({
+      controlPosition: "right",
+      append: !1,
+      actionButtons: [],
+      controlOrder: ["autocomplete", "button", "checkbox", "checkbox-group", "date", "file", "header", "hidden", "paragraph", "number", "radio-group", "select", "text", "textarea"],
+      dataType: "json",
+      disableFields: [],
+      disabledAttrs: [],
+      disabledActionButtons: [],
+      disabledFieldButtons: {},
+      editOnAdd: !1,
+      defaultFields: [],
+      fields: [],
+      fieldRemoveWarn: !1,
+      inputSets: [],
+      replaceFields: [],
+      roles: {
+        1: "Administrator"
+      },
+      notify: {
+        error: function(log) {
+          return console.error(log)
+        },
+        success: function(log) {
+          return console.log(log)
+        },
+        warning: function(log) {
+          return console.warn(log)
+        }
+      },
+      onSave: function(log) {
+        return null
+      },
+      onClearAll: function() {
+        return null
+      },
+      prepend: !1,
+      sortableControls: !1,
+      stickyControls: {
+        enable: !0,
+        offset: {
+          top: 5,
+          bottom: "auto",
+          right: "auto"
+        }
+      },
+      templates: {},
+      showActionButtons: !0,
+      typeUserDisabledAttrs: {},
+      typeUserAttrs: {},
+      typeUserEvents: {},
+      prefix: "form-builder-",
       i18n: {
         locale: 'zh-CN',
-        url: 'js/lang'
+        url: 'js/lang',
+        'zh-CN': {
+          starRating: '评价'
+        }
       }
     });
   });
