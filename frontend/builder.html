@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <title>Moform Builder</title>
   <link rel="stylesheet" href="css/jquery-ui.min.css">
+  <link href="https://cdn.bootcss.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
 
@@ -38,14 +39,34 @@
       controlPosition: "right",
       append: !1,
       actionButtons: [],
-      controlOrder: ["header", "autocomplete", "button", "checkbox", "checkbox-group", "date", "file", "hidden", "paragraph", "number", "radio-group", "select", "text", "textarea"],
+      controlOrder: ["header", "autocomplete", "button", "checkbox", "checkbox-group", "date", "hidden", "paragraph", "number", "radio-group", "select", "text", "textarea"],
       dataType: "json",
       disableFields: [],
       disabledAttrs: [],
       disabledActionButtons: [],
       disabledFieldButtons: {},
       editOnAdd: !1,
-      defaultFields: [],
+      defaultFields: [
+        {
+          "type": "header",
+          "subtype": "h1",
+          "label": "formBuilder 表单"
+        },
+        {
+          "type": "text",
+          "label": "你的名字是？",
+          "className": "form-control",
+          "name": "text-1512607631003",
+          "subtype": "text"
+        },
+        {
+          "type": "button",
+          "label": "保存",
+          "subtype": "button",
+          "className": "btn btn-default",
+          "name": "button-1512607599563",
+          "style": "default"
+        }],
       fields: [],
       fieldRemoveWarn: !1,
       inputSets: [],
@@ -54,21 +75,21 @@
         1: "Administrator"
       },
       notify: {
-        error: function(log) {
+        error: function (log) {
           return console.error(log)
         },
-        success: function(log) {
+        success: function (log) {
           return console.log(log)
         },
-        warning: function(log) {
+        warning: function (log) {
           return console.warn(log)
         }
       },
-      onSave: function() {
+      onSave: function () {
         var formJson = formBuilder.actions.getData();
         return formJson
       },
-      onClearAll: function() {
+      onClearAll: function () {
         return null
       },
       prepend: !1,
