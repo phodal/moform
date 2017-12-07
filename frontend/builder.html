@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Moform Builder</title>
+  <link rel="stylesheet" href="css/jquery-ui.min.css">
+</head>
+<body>
+
+<div class="build-wrap"></div>
+
+<script src="js/jquery-3.2.1.min.js"></script>
+<script src="js/jquery-ui.min.js"></script>
+<script src="js/form-builder.min.js"></script>
+<script src="js/form-render.min.js"></script>
+<script src="js/control_plugins/starRating.min.js"></script>
+<script src="js/control_plugins/textarea.trumbowyg.min.js"></script>
+<script>
+  jQuery(function ($) {
+    $('.build-wrap').formBuilder({
+      i18n: {
+        locale: 'zh-CN',
+        url: 'js/lang'
+      }
+    });
+  });
+</script>
+</body>
+</html>
