@@ -37,10 +37,8 @@ let generateHtml = function(data) {
 <script src="https://cdn.pho.im/js/form-render.min.js"></script>
 <script src="https://cdn.bootcss.com/datatables/1.10.16/js/jquery.dataTables.min.js"></script>
 <script>
-var formsData = ${formsData}
-
 $(document).ready(function () {
-  var parsedFormsData = JSON.parse(formsData);
+  var parsedFormsData = ${formsData};
   var dataSet = [];
   var columns = [];
   for (var i = 0; i < parsedFormsData.length; i++) {
