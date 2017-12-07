@@ -55,8 +55,18 @@
       actionButtons: [],
       controlOrder: ["header",  "checkbox", "checkbox-group", "date", "hidden", "paragraph", "number", "radio-group", "select", "text", "textarea", "button"],
       dataType: "json",
-      onSave: function () {
+      onSave: function (event) {
+        console.log(event)
+        // $(event.target).button('loading');
         var formJson = formBuilder.actions.getData();
+        if(!formJson || (!!formJson && formJson.length === 0)) {
+          $('#successModal .modal-body').html('请填写表单的内容')
+          $('#successModal').modal('show');
+          return;
+        }
+        $('#successModal .modal-body').html('<i class="fa fa-refresh fa-spin"></i>')
+        $('#successModal').modal('show');
+
         $.ajax({
           url: 'https://www.pho.im/f',
           type: 'post',
