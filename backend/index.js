@@ -55,48 +55,21 @@ let baseHtml = `<!DOCTYPE html>
   jQuery(function ($) {
     var formBuilder = $('.build-wrap').formBuilder({
       controlPosition: "right",
-      append: !1,
       actionButtons: [],
-      controlOrder: ["header", "autocomplete", "button", "checkbox", "checkbox-group", "date", "hidden", "paragraph", "number", "radio-group", "select", "text", "textarea"],
+      controlOrder: ["header",  "checkbox", "checkbox-group", "date", "hidden", "paragraph", "number", "radio-group", "select", "text", "textarea", "button"],
       dataType: "json",
-      disableFields: [],
-      disabledAttrs: [],
-      disabledActionButtons: [],
-      disabledFieldButtons: {},
-      editOnAdd: !1,
-      defaultFields: [
-        {
-          "type": "header",
-          "subtype": "h1",
-          "label": "团建收集"
-        },
-        {
-          "type": "text",
-          "label": "你的名字是？",
-          "className": "form-control",
-          "name": "text-1512607631003",
-          "subtype": "text"
-        }],
-      fields: [],
-      fieldRemoveWarn: !1,
-      inputSets: [],
-      replaceFields: [],
-      roles: {
-        1: "Administrator"
-      },
-      notify: {
-        error: function (log) {
-          return console.error(log)
-        },
-        success: function (log) {
-          return console.log(log)
-        },
-        warning: function (log) {
-          return console.warn(log)
-        }
-      },
-      onSave: function () {
+      onSave: function (event) {
+        console.log(event)
+        // $(event.target).button('loading');
         var formJson = formBuilder.actions.getData();
+        if(!formJson || (!!formJson && formJson.length === 0)) {
+          $('#successModal .modal-body').html('请填写表单的内容')
+          $('#successModal').modal('show');
+          return;
+        }
+        $('#successModal .modal-body').html('<i class="fa fa-refresh fa-spin"></i>')
+        $('#successModal').modal('show');
+
         $.ajax({
           url: 'https://www.pho.im/f',
           type: 'post',
@@ -110,25 +83,6 @@ let baseHtml = `<!DOCTYPE html>
         });
         return formJson
       },
-      onClearAll: function () {
-        return null
-      },
-      prepend: !1,
-      sortableControls: !1,
-      stickyControls: {
-        enable: !0,
-        offset: {
-          top: 5,
-          bottom: "auto",
-          right: "auto"
-        }
-      },
-      templates: {},
-      showActionButtons: !0,
-      typeUserDisabledAttrs: {},
-      typeUserAttrs: {},
-      typeUserEvents: {},
-      prefix: "form-builder-",
       i18n: {
         locale: 'zh-CN',
         url: 'js/lang',
