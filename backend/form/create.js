@@ -4,6 +4,7 @@ const isObject = require('lodash.isobject');
 const dynamoDb = new AWS.DynamoDB.DocumentClient();
 
 module.exports.handler = (event, context, callback) => {
+  console.log(event.body)
   let formInfo
   try {
     formInfo = JSON.parse(event.body)
@@ -54,7 +55,10 @@ module.exports.handler = (event, context, callback) => {
     }
 
     const response = {
-      statusCode: 200,
+      statusCode: 201,
+      headers: {
+        "Access-Control-Allow-Origin" : "*" // Required for CORS support to work
+      },
       body: JSON.stringify(params.Item),
     };
     callback(null, response);
