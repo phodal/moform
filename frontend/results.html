@@ -1,0 +1,83 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>${formTitle}</title>
+  <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+  <link href="https://cdn.bootcss.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.bootcss.com/datatables/1.10.16/css/jquery.dataTables.min.css" rel="stylesheet">
+</head>
+<body>
+<!-- Navigation -->
+<nav class="navbar navbar-light bg-light static-top">
+  <div class="container">
+    <a class="navbar-brand" href="#">表单</a>
+    <a class="btn btn-primary" href="#">登录</a>
+  </div>
+</nav>
+
+<div class="container">
+  <table id="results" class="display" width="100%"></table>
+</div>
+
+
+<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/popper.js/1.12.9/umd/popper.min.js"></script>
+<script src="https://cdn.bootcss.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
+<script src="https://cdn.bootcss.com/jquery-ui-bootstrap/0.5pre/assets/js/jquery-ui-1.10.0.custom.min.js"></script>
+<script src="https://cdn.pho.im/js/form-render.min.js"></script>
+<script src="https://cdn.bootcss.com/datatables/1.10.16/js/jquery.dataTables.min.js"></script>
+<script>
+var formsData = '[{"createdAt":1512652527412,"id":"S1wl1p8WM","formId":"B1V1k6L-M","userId":"test","formData":{"formInfo":[{"type":"header","subtype":"h1","label":"表头"},{"name":"date-1512652499122","className":"form-control","label":"日期字段","type":"date"},{"type":"paragraph","subtype":"p","label":"段落"},{"name":"number-1512652502454","className":"form-control","label":"number","type":"number"},{"name":"radio-group-1512652504190","label":"单选组","type":"radio-group","values":[{"value":"1","label":"选项 1"},{"value":"2","label":"选项 2"},{"value":"3","label":"选项 3"}]},{"name":"textarea-1512652505641","className":"form-control","label":"文本框","type":"textarea","subtype":"textarea"},{"name":"autocomplete-1512652506842","className":"form-control","label":"自动完成","type":"autocomplete","values":[{"value":"1","label":"选项 1"},{"value":"2","label":"选项 2"},{"value":"3","label":"选项 3"}]}],"formData":[{"name":"date-1512652499122","value":"2017-12-08"},{"name":"number-1512652502454","value":"123"},{"name":"radio-group-1512652504190","value":"2"},{"name":"textarea-1512652505641","value":"12123"},{"name":"autocomplete-1512652506842","value":"1"}]}},{"createdAt":1512652572413,"id":"HyVX1aLZM","formId":"B1V1k6L-M","userId":"test","formData":{"formInfo":[{"type":"header","subtype":"h1","label":"表头"},{"name":"date-1512652499122","className":"form-control","label":"日期字段","type":"date"},{"type":"paragraph","subtype":"p","label":"段落"},{"name":"number-1512652502454","className":"form-control","label":"number","type":"number"},{"name":"radio-group-1512652504190","label":"单选组","type":"radio-group","values":[{"value":"1","label":"选项 1"},{"value":"2","label":"选项 2"},{"value":"3","label":"选项 3"}]},{"name":"textarea-1512652505641","className":"form-control","label":"文本框","type":"textarea","subtype":"textarea"},{"name":"autocomplete-1512652506842","className":"form-control","label":"自动完成","type":"autocomplete","values":[{"value":"1","label":"选项 1"},{"value":"2","label":"选项 2"},{"value":"3","label":"选项 3"}]}],"formData":[{"name":"date-1512652499122","value":"2017-12-08"},{"name":"number-1512652502454","value":"234"},{"name":"radio-group-1512652504190","value":"2"},{"name":"textarea-1512652505641","value":"234"},{"name":"autocomplete-1512652506842","value":"42"}]}}]'
+
+var dataSet = [
+  [ "Tiger Nixon", "System Architect", "Edinburgh", "5421", "2011/04/25", "$320,800" ],
+  [ "Garrett Winters", "Accountant", "Tokyo", "8422", "2011/07/25", "$170,750" ],
+  [ "Ashton Cox", "Junior Technical Author", "San Francisco", "1562", "2009/01/12", "$86,000" ],
+  [ "Cedric Kelly", "Senior Javascript Developer", "Edinburgh", "6224", "2012/03/29", "$433,060" ],
+  [ "Suki Burks", "Developer", "London", "6832", "2009/10/22", "$114,500" ],
+  [ "Prescott Bartlett", "Technical Author", "London", "3606", "2011/05/07", "$145,000" ],
+  [ "Gavin Cortez", "Team Leader", "San Francisco", "2860", "2008/10/26", "$235,500" ],
+  [ "Martena Mccray", "Post-Sales support", "Edinburgh", "8240", "2011/03/09", "$324,050" ],
+  [ "Unity Butler", "Marketing Designer", "San Francisco", "5384", "2009/12/09", "$85,675" ]
+];
+
+$(document).ready(function () {
+  var parsedFormsData = JSON.parse(formsData);
+  var dataSet = [];
+  var columns = [];
+  for (var i = 0; i < parsedFormsData.length; i++) {
+    var formData = parsedFormsData[i].formData.formData;
+    var formArray = [];
+    for (var j = 0; j < formData.length; j++) {
+      formArray.push(formData[j].value)
+    }
+    dataSet.push(formArray)
+  }
+
+  let formInfo = parsedFormsData[0].formData.formInfo;
+  for (var i = 0; i < formInfo.length; i++) {
+    var fieldInfo = formInfo[i];
+    console.log(fieldInfo.type)
+    if (fieldInfo.type !== 'header' && fieldInfo.type !== 'hidden' && fieldInfo.type !== 'paragraph') {
+      columns.push({
+        title: fieldInfo.label
+      })
+    }
+  }
+
+  console.log(dataSet, columns)
+  $('#results').DataTable({
+    "language": {
+      "url": "https://cdn.datatables.net/plug-ins/1.10.16/i18n/Chinese.json"
+    },
+    data: dataSet,
+    columns: columns
+  });
+});
+</script>
+</body>
+</html>
+
