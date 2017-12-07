@@ -16,6 +16,23 @@
 <script src="js/control_plugins/starRating.min.js"></script>
 <script src="js/control_plugins/textarea.trumbowyg.min.js"></script>
 <script>
+  // function showPreview(formData) {
+  //   let formRenderOpts = {
+  //     dataType: 'xml',
+  //     formData
+  //   };
+  //   let $renderContainer = $('<form/>');
+  //   $renderContainer.formRender(formRenderOpts);
+  //   let html = `<!doctype html><title>Form Preview</title><body class="container"><h1>Preview</h1><hr>${$renderContainer.html()}</body></html>`;
+  //   var formPreviewWindow = window.open('', 'formPreview', 'height=480,width=640,toolbar=no,scrollbars=yes');
+  //
+  //   formPreviewWindow.document.write(html);
+  //   var style = document.createElement('link');
+  //   style.setAttribute('href', 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css');
+  //   style.setAttribute('rel', 'stylesheet');
+  //   style.setAttribute('type', 'text/css');
+  //   formPreviewWindow.document.head.appendChild(style);
+  // }
   jQuery(function ($) {
     $('.build-wrap').formBuilder({
       controlPosition: "right",
