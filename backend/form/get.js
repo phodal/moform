@@ -12,16 +12,29 @@ let generateHtml = function(data) {
         content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>表单</title>
-  <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
-  <script src="https://cdn.bootcss.com/popper.js/1.12.9/umd/popper.min.js"></script>
-  <script src="https://cdn.bootcss.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
-  <script src="https://cdn.bootcss.com/jquery-ui-bootstrap/0.5pre/assets/js/jquery-ui-1.10.0.custom.min.js"></script>
-  <script src="https://d25xwuavfiu27c.cloudfront.net/js/form-render.min.js"></script>
+  <link href="https://cdn.bootcss.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-<form action="/f/${formId}">
+<nav class="navbar navbar-light bg-light static-top">
+  <div class="container">
+    <a class="navbar-brand" href="#">表单</a>
+    <a class="btn btn-primary" href="#">登录</a>
+  </div>
+</nav>
 
-</form>
+<div class="container">
+<div class="row">
+  <form action="/f/${formId}">
+    <div class="form-info"></div>
+    <input type="submit" value="提交" class="btn btn-default btn-success">
+  </form>
+</div>
+</div>  
+<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/popper.js/1.12.9/umd/popper.min.js"></script>
+<script src="https://cdn.bootcss.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
+<script src="https://cdn.bootcss.com/jquery-ui-bootstrap/0.5pre/assets/js/jquery-ui-1.10.0.custom.min.js"></script>
+<script src="https://d25xwuavfiu27c.cloudfront.net/js/form-render.min.js"></script>
 <script>
   $('form').formRender({
     dataType: 'json',
