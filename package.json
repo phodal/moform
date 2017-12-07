@@ -2,7 +2,7 @@
   "dependencies": {
     "lodash.isobject": "^3.0.2",
     "qs": "^6.5.1",
-    "uuid": "^3.1.0"
+    "shortid": "^2.2.8"
   },
   "devDependencies": {
     "serverless-domain-manager": "^1.1.22",
