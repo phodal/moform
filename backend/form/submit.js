@@ -34,6 +34,7 @@ module.exports.handler = (event, context, callback) => {
     }
   };
 
+  console.log(params)
   dynamoDb.put(params, (error) => {
     if (error) {
       console.error(error);
