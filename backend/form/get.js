@@ -16,7 +16,7 @@ let generateHtml = function(data) {
   <script src="https://cdn.bootcss.com/popper.js/1.12.9/umd/popper.min.js"></script>
   <script src="https://cdn.bootcss.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
   <script src="https://cdn.bootcss.com/jquery-ui-bootstrap/0.5pre/assets/js/jquery-ui-1.10.0.custom.min.js"></script>
-  <script src="https://www.pho.im.s3-website-us-east-1.amazonaws.com/js/form-render.min.js"></script>
+  <script src="https://d25xwuavfiu27c.cloudfront.net/js/form-render.min.js"></script>
 </head>
 <body>
 <form action="/f/${formId}">
