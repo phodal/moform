@@ -82,6 +82,7 @@ jQuery(function ($) {
         $('#successModal').modal('show');
       },
       error: function (data) {
+        $('#submitButton').prop('disabled', false);
         console.log(data)
         $('#successModal .modal-title').html('提交失败')
         $('#successModal .modal-body').html(data.responseText)
