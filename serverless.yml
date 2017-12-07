@@ -118,5 +118,6 @@ resources:
 
 package:
   exclude:
-    - frontend/**
+    - frontend/**/*.js
+    - frontend/**/*.css
     - doc/**
