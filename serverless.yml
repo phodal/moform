@@ -19,24 +19,31 @@ provider:
         - dynamodb:PutItem
         - dynamodb:Query
         - dynamodb:Scan
-      Resource: "arn:aws:dynamodb:${opt:region, self:provider.region}:*:table/${self:provider.environment.DYNAMODB_TABLE}"
+      Resource:
+        - "arn:aws:dynamodb:${opt:region, self:provider.region}:*:table/${self:provider.environment.USER_DYNAMODB_TABLE}"
+        - "arn:aws:dynamodb:${opt:region, self:provider.region}:*:table/${self:provider.environment.FORM_DYNAMODB_TABLE}"
       Effect: Allow
 
 functions:
   formCreate:
     handler: backend.form.create.handler
+    events:
       - http:
           path: /f/
           method: post
           cors: true
+
   formGet:
     handler: backend.form.get.handler
+    events:
       - http:
           path: /f/{formId}
           method: get
           cors: true
+
   userGet:
     handler: backend.user.get.handler
+    events:
       - http:
           path: /user/{userId}
           method: get
@@ -80,3 +87,8 @@ resources:
           ReadCapacityUnits: 1
           WriteCapacityUnits: 1
         TableName: ${self:provider.environment.USER_DYNAMODB_TABLE}
+
+package:
+  exclude:
+    - frontend/**
+    - doc/**
