@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "lodash.isobject": "^3.0.2",
+    "qs": "^6.5.1",
     "uuid": "^3.1.0"
   },
   "devDependencies": {
