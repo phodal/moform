@@ -2,6 +2,7 @@ const qs = require('qs');
 const AWS = require('aws-sdk');
 const dynamoDb = new AWS.DynamoDB.DocumentClient();
 const isObject = require('lodash.isobject');
+const shortid = require('shortid');
 
 module.exports.handler = (event, context, callback) => {
   console.log(event);
@@ -25,7 +26,7 @@ module.exports.handler = (event, context, callback) => {
   const params = {
     TableName: process.env.FORM_DATA_DYNAMODB_TABLE,
     Item: {
-      id: uuid.v1(),
+      id: shortid.generate(),
       formId: event.pathParameters.formId,
       userId: 'test',
       createdAt: timestamp

@@ -1,4 +1,4 @@
-const uuid = require('uuid');
+const shortid = require('shortid');
 const AWS = require('aws-sdk');
 const isObject = require('lodash.isobject');
 const dynamoDb = new AWS.DynamoDB.DocumentClient();
@@ -35,7 +35,7 @@ module.exports.handler = (event, context, callback) => {
   const params = {
     TableName: process.env.FORM_DYNAMODB_TABLE,
     Item: {
-      id: uuid.v1(),
+      id: shortid.generate(),
       formInfo: event.body,
       userId: 'test',
       createdAt: timestamp
