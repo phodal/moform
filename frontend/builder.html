@@ -34,11 +34,11 @@
   //   formPreviewWindow.document.head.appendChild(style);
   // }
   jQuery(function ($) {
-    $('.build-wrap').formBuilder({
+    var formBuilder = $('.build-wrap').formBuilder({
       controlPosition: "right",
       append: !1,
       actionButtons: [],
-      controlOrder: ["autocomplete", "button", "checkbox", "checkbox-group", "date", "file", "header", "hidden", "paragraph", "number", "radio-group", "select", "text", "textarea"],
+      controlOrder: ["header", "autocomplete", "button", "checkbox", "checkbox-group", "date", "file", "hidden", "paragraph", "number", "radio-group", "select", "text", "textarea"],
       dataType: "json",
       disableFields: [],
       disabledAttrs: [],
@@ -64,8 +64,9 @@
           return console.warn(log)
         }
       },
-      onSave: function(log) {
-        return null
+      onSave: function() {
+        var formJson = formBuilder.actions.getData();
+        return formJson
       },
       onClearAll: function() {
         return null
