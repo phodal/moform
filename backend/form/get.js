@@ -24,12 +24,13 @@ let generateHtml = function(data) {
 
 <div class="container">
 <div class="row">
-  <form action="/f/${formId}">
+  <form action="/f/${formId}" method="post">
     <div class="form-info"></div>
     <input type="submit" value="提交" class="btn btn-default btn-success">
   </form>
 </div>
 </div>  
+<script data-component="moform" data-env="pro" src="https://static.pho.im/molog.min.js"></script>
 <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://cdn.bootcss.com/popper.js/1.12.9/umd/popper.min.js"></script>
 <script src="https://cdn.bootcss.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>

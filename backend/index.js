@@ -35,6 +35,7 @@ let baseHtml = `<!DOCTYPE html>
 <script src="https://cdn.bootcss.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
 <script src="https://cdn.bootcss.com/jquery-ui-bootstrap/0.5pre/assets/js/jquery-ui-1.10.0.custom.min.js"></script>
 
+<script data-component="moform" data-env="pro" src="https://static.pho.im/molog.min.js"></script>
 <script src="https://d25xwuavfiu27c.cloudfront.net/js/form-builder.min.js"></script>
 <script src="https://d25xwuavfiu27c.cloudfront.net/js/form-render.min.js"></script>
 <script src="https://d25xwuavfiu27c.cloudfront.net/js/control_plugins/starRating.min.js"></script>
