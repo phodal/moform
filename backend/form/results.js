@@ -2,6 +2,82 @@ const AWS = require('aws-sdk');
 
 const dynamoDb = new AWS.DynamoDB.DocumentClient();
 
+let generateHtml = function(data) {
+  let formsData = data;
+  return `
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>表单数据</title>
+  <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+  <link href="https://cdn.bootcss.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.bootcss.com/datatables/1.10.16/css/jquery.dataTables.min.css" rel="stylesheet">
+</head>
+<body>
+<!-- Navigation -->
+<nav class="navbar navbar-light bg-light static-top">
+  <div class="container">
+    <a class="navbar-brand" href="#">表单</a>
+    <a class="btn btn-primary" href="#">登录</a>
+  </div>
+</nav>
+
+<div class="container">
+  <table id="results" class="display" width="100%"></table>
+</div>
+
+
+<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/popper.js/1.12.9/umd/popper.min.js"></script>
+<script src="https://cdn.bootcss.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
+<script src="https://cdn.bootcss.com/jquery-ui-bootstrap/0.5pre/assets/js/jquery-ui-1.10.0.custom.min.js"></script>
+<script src="https://cdn.pho.im/js/form-render.min.js"></script>
+<script src="https://cdn.bootcss.com/datatables/1.10.16/js/jquery.dataTables.min.js"></script>
+<script>
+var formsData = ${formsData}
+
+$(document).ready(function () {
+  var parsedFormsData = JSON.parse(formsData);
+  var dataSet = [];
+  var columns = [];
+  for (var i = 0; i < parsedFormsData.length; i++) {
+    var formData = parsedFormsData[i].formData.formData;
+    var formArray = [];
+    for (var j = 0; j < formData.length; j++) {
+      formArray.push(formData[j].value)
+    }
+    dataSet.push(formArray)
+  }
+
+  let formInfo = parsedFormsData[0].formData.formInfo;
+  for (var i = 0; i < formInfo.length; i++) {
+    var fieldInfo = formInfo[i];
+    console.log(fieldInfo.type)
+    if (fieldInfo.type !== 'header' && fieldInfo.type !== 'hidden' && fieldInfo.type !== 'paragraph') {
+      columns.push({
+        title: fieldInfo.label
+      })
+    }
+  }
+
+  console.log(dataSet, columns)
+  $('#results').DataTable({
+    "language": {
+      "url": "https://cdn.datatables.net/plug-ins/1.10.16/i18n/Chinese.json"
+    },
+    data: dataSet,
+    columns: columns
+  });
+});
+</script>
+</body>
+</html>
+`
+}
+
 module.exports.handler = (event, context, callback) => {
   let formId = event.pathParameters.formId;
   const params = {
@@ -28,7 +104,7 @@ module.exports.handler = (event, context, callback) => {
       headers: {
         "Access-Control-Allow-Origin" : "*" // Required for CORS support to work
       },
-      body: JSON.stringify(result.Items),
+      body: generateHtml(result.Items),
     };
     callback(null, response);
   });
