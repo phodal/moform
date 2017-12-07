@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "lodash.isobject": "^3.0.2",
+    "uuid": "^3.1.0"
+  }
+}

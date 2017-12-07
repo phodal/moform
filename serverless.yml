@@ -26,7 +26,7 @@ provider:
 
 functions:
   formCreate:
-    handler: backend.form.create.handler
+    handler: backend/form/create.handler
     events:
       - http:
           path: /f/
@@ -34,7 +34,7 @@ functions:
           cors: true
 
   formGet:
-    handler: backend.form.get.handler
+    handler: backend/form/get.handler
     events:
       - http:
           path: /f/{formId}
@@ -42,7 +42,7 @@ functions:
           cors: true
 
   userGet:
-    handler: backend.user.get.handler
+    handler: backend/user/get.handler
     events:
       - http:
           path: /user/{userId}
