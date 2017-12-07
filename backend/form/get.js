@@ -35,6 +35,9 @@ let generateHtml = function(data) {
 <script src="https://cdn.bootcss.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
 <script src="https://cdn.bootcss.com/jquery-ui-bootstrap/0.5pre/assets/js/jquery-ui-1.10.0.custom.min.js"></script>
 <script src="https://d25xwuavfiu27c.cloudfront.net/js/form-render.min.js"></script>
+<script src="https://d25xwuavfiu27c.cloudfront.net/js/control_plugins/starRating.min.js"></script>
+<script src="https://d25xwuavfiu27c.cloudfront.net/js/control_plugins/textarea.trumbowyg.min.js"></script>
+
 <script>
   $('.form-info').formRender({
     dataType: 'json',
