@@ -49,7 +49,7 @@ module.exports.handler = (event, context, callback) => {
       null,
       {
         statusCode: 200,
-        body: '<h1>提交成功</h1>',
+        body: `<h1>提交成功</h1>`,
         headers: {
           'Location': originUrl + '/success',
           'Content-Type': 'text/plain'

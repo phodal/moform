@@ -8,7 +8,18 @@ let baseHtml = `<!DOCTYPE html>
 </head>
 <body>
 
-<div class="build-wrap"></div>
+<nav class="navbar navbar-light bg-light static-top">
+  <div class="container">
+    <a class="navbar-brand" href="#">表单</a>
+    <a class="btn btn-primary" href="#">登录</a>
+  </div>
+</nav>
+
+<div class="container">
+  <div class="row">
+    <div class="build-wrap"></div>
+  </div>
+</div>
 
 <!-- Modal -->
 <div class="modal fade" id="successModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -57,7 +68,7 @@ let baseHtml = `<!DOCTYPE html>
         {
           "type": "header",
           "subtype": "h1",
-          "label": "formBuilder 表单"
+          "label": "团建收集"
         },
         {
           "type": "text",
@@ -65,14 +76,6 @@ let baseHtml = `<!DOCTYPE html>
           "className": "form-control",
           "name": "text-1512607631003",
           "subtype": "text"
-        },
-        {
-          "type": "button",
-          "label": "保存",
-          "subtype": "button",
-          "className": "btn btn-default",
-          "name": "button-1512607599563",
-          "style": "default"
         }],
       fields: [],
       fieldRemoveWarn: !1,
