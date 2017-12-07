@@ -67,6 +67,13 @@ functions:
           path: /f/{formId}
           method: post
 
+  formResults:
+    handler: backend/form/results.handler
+    events:
+      - http:
+          path: /f/{formId}/results
+          method: get
+
   userGet:
     handler: backend/user/get.handler
     events:
