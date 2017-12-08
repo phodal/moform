@@ -3,6 +3,7 @@ service: moform
 plugins:
   - serverless-domain-manager
   - serverless-finch
+  - serverless-plugin-simulate
 
 custom:
   stage: ${opt:stage, self:provider.stage}
@@ -14,6 +15,8 @@ custom:
     basePath: ''
     stage: ${self:provider.stage}
     createRoute53Record: true
+  simulate:
+    services: docker-compose.yml
 
 provider:
   name: aws
