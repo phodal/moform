@@ -28,7 +28,7 @@ module.exports.handler = (event, context, callback) => {
     Item: {
       id: shortid.generate(),
       formId: event.pathParameters.formId,
-      formData: formData,
+      formData: JSON.stringify(formData),
       userId: 'test',
       createdAt: timestamp
     }
