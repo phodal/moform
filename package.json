@@ -5,6 +5,7 @@
     "shortid": "^2.2.8"
   },
   "devDependencies": {
+    "request": "^2.83.0",
     "serverless-domain-manager": "^1.1.22",
     "serverless-finch": "^1.3.0",
     "serverless-plugin-simulate": "^0.0.17"
