@@ -67,12 +67,13 @@ let baseHtml = `<!DOCTYPE html>
         $('#successModal .modal-body').html('<i class="fa fa-refresh fa-spin"></i>')
         $('#successModal').modal('show');
 
+        var baseUrl = location.protocol + '//' + location.host + '/f/'
         $.ajax({
-          url: 'https://www.pho.im/f',
+          url: baseUrl,
           type: 'post',
           dataType: 'json',
           success: function (data) {
-            var url = 'https://www.pho.im/f/'+ data.id;
+            baseUrl + data.id;
             $('#successModal .modal-body').html('<p> 生成的表单地址是: <a href="' + url + '">' + url + '</a></p>')
             $('#successModal').modal('show');
           },
