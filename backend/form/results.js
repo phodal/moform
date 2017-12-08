@@ -52,7 +52,7 @@ $(document).ready(function () {
   var dataSet = [];
   var columns = [];
   for (var i = 0; i < parsedFormsData.length; i++) {
-    var formData = parsedFormsData[i].formData.formData;
+    var formData = JSON.parse(parsedFormsData[i].formData).formData;
     var formArray = [];
     for (var j = 0; j < formData.length; j++) {
       formArray.push(formData[j].value)
@@ -60,7 +60,7 @@ $(document).ready(function () {
     dataSet.push(formArray)
   }
 
-  let formInfo = parsedFormsData[0].formData.formInfo;
+  let formInfo = JSON.parse(parsedFormsData[0].formData).formInfo;
   for (var i = 0; i < formInfo.length; i++) {
     var fieldInfo = formInfo[i];
     console.log(fieldInfo.type)
@@ -76,6 +76,10 @@ $(document).ready(function () {
     "language": {
       "url": "https://cdn.datatables.net/plug-ins/1.10.16/i18n/Chinese.json"
     },
+    dom: 'Bfrtip',
+    buttons: [
+      'copy', 'csv', 'excel', 'pdf', 'print'
+    ],
     data: dataSet,
     columns: columns
   });
