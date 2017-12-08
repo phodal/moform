@@ -3,7 +3,7 @@ let baseHtml = `<!DOCTYPE html>
 <head>
   <meta charset="UTF-8">
   <title>Moform Builder</title>
-  <link rel="stylesheet" href="https://d25xwuavfiu27c.cloudfront.net/css/jquery-ui.min.css">
+  <link rel="stylesheet" href="https://cdn.pho.im/css/jquery-ui.min.css">
   <link href="https://cdn.bootcss.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
@@ -44,10 +44,10 @@ let baseHtml = `<!DOCTYPE html>
 <script src="https://cdn.bootcss.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
 <script src="https://cdn.bootcss.com/jquery-ui-bootstrap/0.5pre/assets/js/jquery-ui-1.10.0.custom.min.js"></script>
 
-<script src="https://d25xwuavfiu27c.cloudfront.net/js/form-builder.min.js"></script>
-<script src="https://d25xwuavfiu27c.cloudfront.net/js/form-render.min.js"></script>
-<script src="https://d25xwuavfiu27c.cloudfront.net/js/control_plugins/starRating.min.js"></script>
-<script src="https://d25xwuavfiu27c.cloudfront.net/js/control_plugins/textarea.trumbowyg.min.js"></script>
+<script src="https://cdn.pho.im/js/form-builder.min.js"></script>
+<script src="https://cdn.pho.im/js/form-render.min.js"></script>
+<script src="https://cdn.pho.im/js/control_plugins/starRating.min.js"></script>
+<script src="https://cdn.pho.im/js/control_plugins/textarea.trumbowyg.min.js"></script>
 <script>
   jQuery(function ($) {
     var formBuilder = $('.build-wrap').formBuilder({
