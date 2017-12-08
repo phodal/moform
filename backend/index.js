@@ -24,7 +24,7 @@ let baseHtml = `<!DOCTYPE html>
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">创建成功</h5>
+        <h5 class="modal-title" id="exampleModalLabel">创建中。。</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -64,7 +64,7 @@ let baseHtml = `<!DOCTYPE html>
           $('#successModal').modal('show');
           return;
         }
-        $('#successModal .modal-body').html('<i class="fa fa-refresh fa-spin"></i>')
+        $('#successModal .modal-body').html('<i style="color: #eee" class="fa fa-refresh fa-spin"></i>')
         $('#successModal').modal('show');
 
         var baseUrl = location.protocol + '//' + location.host + '/f/'
@@ -74,6 +74,7 @@ let baseHtml = `<!DOCTYPE html>
           dataType: 'json',
           success: function (data) {
             var url = baseUrl + data.id;
+            $('#successModal .modal-title').html('创建成功')
             $('#successModal .modal-body').html('<p> 生成的表单地址是: <a href="' + url + '">' + url + '</a></p>')
             $('#successModal').modal('show');
           },
