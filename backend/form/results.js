@@ -3,7 +3,7 @@ const AWS = require('aws-sdk');
 const dynamoDb = new AWS.DynamoDB.DocumentClient();
 
 let generateHtml = function(data) {
-  let formsData = JSON.stringify(data);
+  let formsData = data;
   return `
 <html>
 <head>
