@@ -73,7 +73,7 @@ let baseHtml = `<!DOCTYPE html>
           type: 'post',
           dataType: 'json',
           success: function (data) {
-            baseUrl + data.id;
+            var url = baseUrl + data.id;
             $('#successModal .modal-body').html('<p> 生成的表单地址是: <a href="' + url + '">' + url + '</a></p>')
             $('#successModal').modal('show');
           },
