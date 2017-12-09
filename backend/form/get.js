@@ -48,7 +48,7 @@ jQuery(function ($) {
   $('#submitForm').on("submit", function (){
     event.preventDefault();
     $('#submitButton').prop('disabled', true);
-    let filledData = $(this).serializeArray();
+    var filledData = $(this).serializeArray();
     $.ajax({
       url: '/f/${formId}',
       type: 'post',
@@ -58,9 +58,6 @@ jQuery(function ($) {
         $('#successModal').modal('show');
       },
       error: function (data) {
-        $('#submitButton').prop('disabled', false);
-        console.log(data)
-        $('#successModal .modal-title').html('提交失败')
         $('#successModal .modal-body').html(data.responseText)
         $('#successModal').modal('show');
       },
