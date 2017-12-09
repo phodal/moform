@@ -8,7 +8,7 @@ let generateHtml = function(data) {
   let formId = data.id;
 
   let bodyTemplate = `
-<div class="container mt-5">
+<div class="container mt-3">
   <form id="submitForm" action="/f/${formId}" method="post">
     <div class="form-info"></div>
     <button id="submitButton" type="submit" class="btn btn-default btn-success">

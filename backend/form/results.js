@@ -6,7 +6,7 @@ const getBaseTemplate = baseTemplate.getBaseTemplate;
 
 
 const bodyTemplate =
-`<div class="container mt-5">
+`<div class="container mt-3">
   <table id="results" class="display" width="100%"></table>
 </div>
 `
