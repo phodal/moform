@@ -1,20 +1,7 @@
-let baseHtml = `<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Moform Builder</title>
-  <link rel="stylesheet" href="https://cdn.pho.im/css/jquery-ui.min.css">
-  <link href="https://cdn.bootcss.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" rel="stylesheet">
-</head>
-<body>
+const baseTemplate = require('./templates/base');
+const getBaseTemplate = baseTemplate.getBaseTemplate;
 
-<nav class="navbar navbar-light bg-light static-top">
-  <div class="container">
-    <a class="navbar-brand" href="#">表单</a>
-    <a class="btn btn-primary" href="#">登录</a>
-  </div>
-</nav>
-
+let bodyTemplate = `
 <div class="container">
   <div class="build-wrap"></div>
 </div>
@@ -38,16 +25,10 @@ let baseHtml = `<!DOCTYPE html>
     </div>
   </div>
 </div>
+`
 
-<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
-<script src="https://cdn.bootcss.com/popper.js/1.12.9/umd/popper.min.js"></script>
-<script src="https://cdn.bootcss.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
-<script src="https://cdn.bootcss.com/jquery-ui-bootstrap/0.5pre/assets/js/jquery-ui-1.10.0.custom.min.js"></script>
-
-<script src="https://cdn.pho.im/js/form-builder.min.js"></script>
-<script src="https://cdn.pho.im/js/form-render.min.js"></script>
-<script src="https://cdn.pho.im/js/control_plugins/starRating.min.js"></script>
-<script src="https://cdn.pho.im/js/control_plugins/textarea.trumbowyg.min.js"></script>
+let scriptTemplate =
+`
 <script>
   jQuery(function ($) {
     var formBuilder = $('.build-wrap').formBuilder({
@@ -92,10 +73,9 @@ let baseHtml = `<!DOCTYPE html>
     });
   });
 </script>
-</body>
-</html>
 `
 
+let baseHtml = getBaseTemplate('Moform - 开源的企业数据收集、整理和分析平台', bodyTemplate, scriptTemplate)
 module.exports.handler = (event, context, callback) => {
   const response = {
     statusCode: 200,
