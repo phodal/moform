@@ -31,5 +31,13 @@ ${body}
 
 ${script}
 </body>
+
+<footer class="footer">
+  <div class="container">
+    <p>
+      <span class="text-muted">A Phodal's Idea</span>
+    </p>
+  </div>
+</footer>
 </html>`
 }
