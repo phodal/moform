@@ -1,49 +1,20 @@
 const AWS = require('aws-sdk');
-
 const dynamoDb = new AWS.DynamoDB.DocumentClient();
+
+const baseTemplate = require('../templates/results/base');
+const getBaseTemplate = baseTemplate.getBaseTemplate;
+
+
+const bodyTemplate =
+`<div class="container mt-5">
+  <table id="results" class="display" width="100%"></table>
+</div>
+`
 
 let generateHtml = function(data) {
   let formsData = JSON.stringify(data);
-  return `
-<html>
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport"
-        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>表单数据</title>
-  <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
-  <link href="https://cdn.bootcss.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" rel="stylesheet">
-  <link href="https://cdn.bootcss.com/datatables/1.10.16/css/jquery.dataTables.min.css" rel="stylesheet">
-  <link href="https://cdn.datatables.net/buttons/1.4.2/css/buttons.dataTables.min.css" rel="stylesheet">
-</head>
-<body>
-<!-- Navigation -->
-<nav class="navbar navbar-light bg-light static-top">
-  <div class="container">
-    <a class="navbar-brand" href="#">表单</a>
-    <a class="btn btn-primary" href="#">登录</a>
-  </div>
-</nav>
-
-<div class="container">
-  <table id="results" class="display" width="100%"></table>
-</div>
-
-
-<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
-<script src="https://cdn.bootcss.com/popper.js/1.12.9/umd/popper.min.js"></script>
-<script src="https://cdn.bootcss.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
-<script src="https://cdn.bootcss.com/jquery-ui-bootstrap/0.5pre/assets/js/jquery-ui-1.10.0.custom.min.js"></script>
-<script src="https://cdn.pho.im/js/form-render.min.js"></script>
-<script src="https://cdn.bootcss.com/datatables/1.10.16/js/jquery.dataTables.min.js"></script>
-
-<script src="https://cdn.datatables.net/buttons/1.4.2/js/dataTables.buttons.min.js"></script>
-<script src="//cdn.datatables.net/buttons/1.4.2/js/buttons.flash.min.js"></script>
-<script src="https://cdn.bootcss.com/jszip/3.1.5/jszip.min.js"></script>
-<script src="//cdn.datatables.net/buttons/1.4.2/js/buttons.html5.min.js"></script>
-<script src="//cdn.datatables.net/buttons/1.4.2/js/buttons.print.min.js"></script>
-<script>
+  let scriptTemplate =
+`<script>
 $(document).ready(function () {
   var parsedFormsData = ${formsData};
   var dataSet = [];
@@ -81,10 +52,9 @@ $(document).ready(function () {
     columns: columns
   });
 });
-</script>
-</body>
-</html>
-`
+</script>`
+
+  return getBaseTemplate('Moform - 开源的企业数据收集、整理和分析平台', bodyTemplate, scriptTemplate)
 }
 
 module.exports.handler = (event, context, callback) => {
