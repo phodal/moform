@@ -2,7 +2,7 @@ const baseTemplate = require('./templates/base');
 const getBaseTemplate = baseTemplate.getBaseTemplate;
 
 let bodyTemplate = `
-<div class="container">
+<div class="container mt-5">
   <div class="build-wrap"></div>
 </div>
 
