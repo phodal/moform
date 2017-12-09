@@ -9,14 +9,12 @@ let generateHtml = function(data) {
 
   let bodyTemplate = `
 <div class="container mt-5">
-  <div class="row">
-    <form id="submitForm" action="/f/${formId}" method="post">
-      <div class="form-info"></div>
-      <button id="submitButton" type="submit" class="btn btn-default btn-success">
-        提交
-      </button>
-    </form>
-  </div>
+  <form id="submitForm" action="/f/${formId}" method="post">
+    <div class="form-info"></div>
+    <button id="submitButton" type="submit" class="btn btn-default btn-success">
+      提交
+    </button>
+  </form>
 </div>
 
 <div class="modal fade" id="successModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
