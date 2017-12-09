@@ -1,30 +1,14 @@
 const AWS = require('aws-sdk'); // eslint-disable-line import/no-extraneous-dependencies
 const dynamoDb = new AWS.DynamoDB.DocumentClient();
+const baseTemplate = require('../templates/base');
+const getBaseTemplate = baseTemplate.getBaseTemplate;
 
 let generateHtml = function(data) {
   let formInfo = data.formInfo;
-  let formTitle = '使用 Pho.im 提交您的数据';
   let formId = data.id;
-  return `<html>
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport"
-        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>${formTitle}</title>
-  <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
-  <link href="https://cdn.bootcss.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" rel="stylesheet">
-</head>
-<body>
-<!-- Navigation -->
-<nav class="navbar navbar-light bg-light static-top">
-  <div class="container">
-    <a class="navbar-brand" href="#">表单</a>
-    <a class="btn btn-primary" href="#">登录</a>
-  </div>
-</nav>
 
-<div class="container">
+  let bodyTemplate = `
+<div class="container mt-5">
   <div class="row">
     <form id="submitForm" action="/f/${formId}" method="post">
       <div class="form-info"></div>
@@ -52,16 +36,10 @@ let generateHtml = function(data) {
       </div>
     </div>
   </div>
-</div>
+</div>`
 
-<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
-<script src="https://cdn.bootcss.com/popper.js/1.12.9/umd/popper.min.js"></script>
-<script src="https://cdn.bootcss.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
-<script src="https://cdn.bootcss.com/jquery-ui-bootstrap/0.5pre/assets/js/jquery-ui-1.10.0.custom.min.js"></script>
-<script src="https://cdn.pho.im/js/control_plugins/starRating.min.js"></script>
-<script src="https://cdn.pho.im/js/control_plugins/textarea.trumbowyg.min.js"></script>
-<script src="https://cdn.pho.im/js/form-render.min.js"></script>
-<script>
+  let scriptTemplate =
+`<script>
 window.formInfo = ${formInfo}
 jQuery(function ($) {
   $('.form-info').formRender({
@@ -95,11 +73,9 @@ jQuery(function ($) {
     });
   });
 });
-</script>
-</body>
-</html>
+</script>`
 
-`
+  return getBaseTemplate('Moform - 开源的企业数据收集、整理和分析平台', bodyTemplate, scriptTemplate)
 }
 
 module.exports.handler = (event, context, callback) => {
