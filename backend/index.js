@@ -36,6 +36,7 @@ let scriptTemplate =
       actionButtons: [],
       controlOrder: ["header",  "checkbox", "checkbox-group", "date", "hidden", "paragraph", "number", "radio-group", "select", "text", "textarea", "button"],
       dataType: "json",
+      disabledActionButtons: ['clear', 'data'],
       onSave: function (event) {
         console.log(event)
         // $(event.target).button('loading');
