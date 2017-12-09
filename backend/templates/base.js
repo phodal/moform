@@ -8,8 +8,12 @@ module.exports.getBaseTemplate = (title, body, script) => {
 <head>
   <meta charset="UTF-8">
   <title>${title}</title>
+  <meta http-equiv="content-language" content="zh-CN"/>
+  <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="keywords" content="表单,客户管理,短信,邮件,市场营销,数据收集,广告投放,数据分析,调查问卷,满意度调查,客户关系管理,crm,反馈表,登记表,办公OA" />
   <meta name="description" content="Moform 是一款基于 Serverless 架构的开源在线表单制作工具，同时也是强大的客户信息处理和关系管理系统。她可以帮助你轻松完成信息收集与整理，实现客户挖掘与消息推送，并开展持续营销。" />
+  <link rel="shortcut icon" href="https://www.phodal.com/static/phodal/images/favicon.ico">
   <link rel="stylesheet" href="https://cdn.pho.im/css/jquery-ui.min.css">
   <link href="https://cdn.bootcss.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
