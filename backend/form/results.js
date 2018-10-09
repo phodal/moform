@@ -22,20 +22,24 @@ $(document).ready(function () {
   for (var i = 0; i < parsedFormsData.length; i++) {
     var formData = JSON.parse(parsedFormsData[i].formData).formData;
     var formArray = [];
-    for (var j = 0; j < formData.length; j++) {
-      formArray.push(formData[j].value)
+    if (formData) {
+      for (var j = 0; j < formData.length; j++) {
+        formArray.push(formData[j].value)
+      }
+      dataSet.push(formArray)
     }
-    dataSet.push(formArray)
   }
 
-  let formInfo = JSON.parse(parsedFormsData[0].formData).formInfo;
-  for (var i = 0; i < formInfo.length; i++) {
-    var fieldInfo = formInfo[i];
-    console.log(fieldInfo.type)
-    if (fieldInfo.type !== 'header' && fieldInfo.type !== 'hidden' && fieldInfo.type !== 'paragraph') {
-      columns.push({
-        title: fieldInfo.label
-      })
+  var formInfo = JSON.parse(parsedFormsData[0].formData).formInfo;
+  if (formInfo) {
+    for (var i = 0; i < formInfo.length; i++) {
+      var fieldInfo = formInfo[i];
+      console.log(fieldInfo.type)
+      if (fieldInfo.type !== 'header' && fieldInfo.type !== 'hidden' && fieldInfo.type !== 'paragraph') {
+        columns.push({
+          title: fieldInfo.label
+        })
+      }
     }
   }
 
